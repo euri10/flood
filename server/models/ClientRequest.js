@@ -128,7 +128,9 @@ class ClientRequest {
     let tagsArr = options.tags;
 
     files.forEach(file => {
-      let methodCall = 'load.raw_start';
+      let fSize = file.size;
+      let methodCall = fSize > 1572864  ? 'load_start' : 'load.raw_start'
+      //let methodCall = 'load.raw_start' ;
       let parameters = ['', file.buffer];
       let timeAdded = Math.floor(Date.now() / 1000);
 
