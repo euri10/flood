@@ -129,7 +129,7 @@ class ClientRequest {
 
     files.forEach(file => {
       let fSize = file.size;
-      let methodCall = fSize > 1572864  ? 'load_start' : 'load.raw_start'
+      let methodCall = fSize > 1572864  ? 'load_start' : 'load.raw_start';
       //let methodCall = 'load.raw_start' ;
       let parameters = ['', file.buffer];
       let timeAdded = Math.floor(Date.now() / 1000);
@@ -150,7 +150,8 @@ class ClientRequest {
       // The start value is a string because it was appended to a FormData
       // object.
       if (start === 'false') {
-        methodCall = 'load.raw';
+        //methodCall = 'load.raw';
+          methodCall = fSize > 1572864  ? 'load' : 'load.raw'
       }
 
       this.requests.push(this.getMethodCall(methodCall, parameters));
